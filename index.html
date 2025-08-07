@@ -10,21 +10,180 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background: #fdfaf6; color: #444; }
-    header { background: #fbc4ab; color: #4a2c2a; padding: 2rem; text-align: center; }
-    nav { background: #ffe8d6; display: flex; justify-content: center; }
-    nav a { color: #4a2c2a; margin: 1rem; text-decoration: none; font-weight: 600; }
-    nav a:hover { color: #bc6c25; }
-    main { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
-    section { margin-bottom: 2rem; }
-    article { background: #fff; border-radius: 12px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
-    article:hover { transform: translateY(-4px); }
-    article img { max-width: 100%; border-radius: 10px; }
-    h2 { color: #bc6c25; border-bottom: 2px solid #fbc4ab; padding-bottom: 5px; }
-    footer { background: #ffe8d6; color: #4a2c2a; text-align: center; padding: 1rem; margin-top: 2rem; font-size: 0.9rem; }
-   
-    header div h1 img{
-        margin-top:100px ;
+   * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    :root {
+      --bg: #fefefe;
+      --text: #3a3a3a;
+      --primary: #faedcd;
+      --accent: #ffb703;
+      --nav-bg: #fff3e0;
+      --hover: #bc6c25;
+    }
+    body.dark-mode {
+      --bg: #1c1c1c;
+      --text: #f0f0f0;
+      --primary: #2e2e2e;
+      --nav-bg: #2c2c2c;
+      --hover: #ffb703;
+    }
+    header, footer, nav, article, section {
+      transition: background-color 0.3s, color 0.3s;
+    }
+    header {
+      background: linear-gradient(to right, var(--primary), #fcd5ce);
+      color: #3e2723;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    nav {
+      background: var(--nav-bg);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0.5rem 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    nav a {
+      color: #6d4c41;
+      margin: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--hover);
+    }
+    .toggle-darkmode {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--nav-bg);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    article {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    article:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    article img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+    h1, h2, h3 {
+      color: #8d4f2f;
+    }
+    h2 {
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    footer {
+      background: var(--nav-bg);
+      color: #5d4037;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+      border-top: 1px solid #e0cfc1;
+    }
+    #backToTop {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+      z-index: 999;
+    }
+    .newsletter {
+      background: var(--primary);
+      padding: 2rem;
+      text-align: center;
+      border-radius: 10px;
+    }
+    .newsletter input[type="email"] {
+      padding: 0.5rem;
+      width: 60%;
+      max-width: 300px;
+      margin-right: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .newsletter button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background: var(--hover);
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .comments {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .comments h3 {
+      margin-top: 0;
+    }
+    .comments textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    .comments button {
+      margin-top: 0.75rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background: var(--hover);
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -38,13 +197,19 @@
     <a href="#nutrition">Nutrition</a>
     <a href="#tips">Tips</a>
     <a href="#features">Features</a>
+    <a href="#equipment">Equipment</a>
+    <a href="#culture">Culture</a>
+    <a href="#seasonal">Seasonal</a>
   </nav>
   <main>
     <section id="recipes">
       <h2>Featured Recipes</h2>
       <article>
         <h3>Berry Chia Overnight Oats</h3>
-        <img width="300px" src="zz.png" alt="Berry Overnight Oats"><script type="text/javascript">
+        <img width="300px" src="zz.png" alt="Berry Overnight Oats">
+        
+        
+        <script type="text/javascript">
 	atOptions = {
 		'key' : 'a640e678c56bee5438d9a1d237648467',
 		'format' : 'iframe',
@@ -54,9 +219,13 @@
 	};
 </script>
 <script type="text/javascript" src="//archaicfondlefork.com/a640e678c56bee5438d9a1d237648467/invoke.js"></script>
-        <p>Loaded with antioxidants, fiber, and plant protein, these overnight oats are a quick and nutritious breakfast option.</p>
+     
+
+<p>Loaded with antioxidants, fiber, and plant protein, these overnight oats are a quick and nutritious breakfast option.</p>
       </article>
-	    
+	  
+      
+
       <script type="text/javascript">
 	atOptions = {
 		'key' : 'a640e678c56bee5438d9a1d237648467',
@@ -67,13 +236,17 @@
 	};
 </script>
 <script type="text/javascript" src="//archaicfondlefork.com/a640e678c56bee5438d9a1d237648467/invoke.js"></script>
-      <article>
+     
+
+<article>
         <h3>Roasted Veggie Buddha Bowl</h3>
         <img width="300px" src="yy.jpg" alt="Roasted Buddha Bowl">
         <p>Colorful vegetables, quinoa, and a lemon tahini dressing combine for a vibrant, healthy meal.</p>
       </article>
     </section>
-	  <script type="text/javascript">
+	  
+      
+      <script type="text/javascript">
 	atOptions = {
 		'key' : '77d1f2403e8fdb59c81cafd7797ef49c',
 		'format' : 'iframe',
@@ -83,11 +256,16 @@
 	};
 </script>
 <script type="text/javascript" src="//archaicfondlefork.com/77d1f2403e8fdb59c81cafd7797ef49c/invoke.js"></script>
-    <section id="nutrition">
+    
+
+<section id="nutrition">
       <h2>Nutrition & Wellness</h2>
       <article>
         <h3>Hydration for Health</h3>
-        <img width="300px" src="x.jpg" alt="Glass of Water"><script type="text/javascript">
+        <img width="300px" src="x.jpg" alt="Glass of Water">
+        
+        
+        <script type="text/javascript">
 	atOptions = {
 		'key' : 'a640e678c56bee5438d9a1d237648467',
 		'format' : 'iframe',
@@ -97,9 +275,14 @@
 	};
 </script>
 <script type="text/javascript" src="//archaicfondlefork.com/a640e678c56bee5438d9a1d237648467/invoke.js"></script>
-        <p>Drinking enough water helps regulate body temperature, improves mood, and boosts energy levels.</p>
+        
+
+<p>Drinking enough water helps regulate body temperature, improves mood, and boosts energy levels.</p>
       </article>
-    </section><script type="text/javascript">
+    </section>
+    
+
+    <script type="text/javascript">
 	atOptions = {
 		'key' : '77d1f2403e8fdb59c81cafd7797ef49c',
 		'format' : 'iframe',
@@ -109,7 +292,9 @@
 	};
 </script>
 <script type="text/javascript" src="//archaicfondlefork.com/77d1f2403e8fdb59c81cafd7797ef49c/invoke.js"></script>
-    <section id="tips">
+    
+
+<section id="tips">
       <h2>Cooking Tips & Hacks</h2>
       <article>
         <h3>Zero-Waste Kitchen Tips</h3>
@@ -120,7 +305,10 @@
     <section id="features">
       <h2>Ingredient Spotlight: Fresh Basil</h2>
       <article>
-        <img width="300px" src="vv.jpg" alt="Fresh Basil"><script type="text/javascript">
+        <img width="300px" src="vv.jpg" alt="Fresh Basil">
+        
+        
+        <script type="text/javascript">
 	atOptions = {
 		'key' : 'a640e678c56bee5438d9a1d237648467',
 		'format' : 'iframe',
@@ -130,10 +318,15 @@
 	};
 </script>
 <script type="text/javascript" src="//archaicfondlefork.com/a640e678c56bee5438d9a1d237648467/invoke.js"></script>
+
+
         <p>Fresh basil elevates pasta, salads, and even desserts with its aromatic flavor. Grow it easily on your kitchen windowsill.</p>
       </article>
     </section>
-  </main><script type="text/javascript">
+  </main>
+  
+
+  <script type="text/javascript">
 	atOptions = {
 		'key' : 'a640e678c56bee5438d9a1d237648467',
 		'format' : 'iframe',
@@ -143,14 +336,35 @@
 	};
 </script>
 <script type="text/javascript" src="//archaicfondlefork.com/a640e678c56bee5438d9a1d237648467/invoke.js"></script>
-  <footer>
+  
+
+<section class="newsletter">
+      <h2>Subscribe for Weekly Recipes</h2>
+      <p>Get healthy and delicious recipes delivered to your inbox!</p>
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </section>
+
+    <section class="comments">
+      <h3>Leave a Comment</h3>
+      <textarea rows="4" placeholder="Share your thoughts..."></textarea>
+      <button>Post Comment</button>
+    </section>
+  </main>
+
+  <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Top</button>
+
+
+<footer>
     <p>&copy; 2025 Delight Chef. Crafted with love for food lovers worldwide.</p>
   </footer>
+
+  <script>
+    // Back to Top Button
+    const topBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      topBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
