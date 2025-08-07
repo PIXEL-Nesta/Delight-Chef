@@ -341,10 +341,17 @@
 <section class="newsletter">
   <h2>Subscribe for Weekly Recipes</h2>
   <p>Get healthy and delicious recipes delivered to your inbox!</p>
-  <form name="subscribe" method="POST" data-netlify="true">
-    <input type="email" name="email" placeholder="Enter your email" required>
-    <button type="submit">Subscribe</button>
-  </form>
+  <form name="subscribe" netlify>
+  <p>
+    <label>Name  : <input type="text" name="name" required /></label>
+  </p>
+  <p>
+    <label>Email  : <input type="email" name="email" required /></label>
+  </p>
+  <p>
+    <button type="submit">Submit</button>
+  </p>
+</form>
 </section>
 
     <section class="comments">
@@ -370,4 +377,5 @@
   </script>
 </body>
 </html>
+
 
