@@ -355,10 +355,15 @@
 </section>
 
     <section class="comments">
-      <h3>Leave a Comment</h3>
-      <textarea rows="4" placeholder="Share your thoughts..."></textarea>
-      <button>Post Comment</button>
-    </section>
+  <h2>Leave a Comment</h2>
+  <form name="comments" method="POST" data-netlify="true" netlify>
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Comment" required></textarea>
+    <button type="submit">Post Comment</button>
+  </form>
+</section>
+
   </main>
 
   <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Top</button>
@@ -377,5 +382,6 @@
   </script>
 </body>
 </html>
+
 
 
